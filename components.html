@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduXplore | Computer Parts</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>EduXplore</h1>
+        <p>An Interactive Web-Based Computer Hardware Learning Guide</p>
+
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lessons.html">Lessons</a></li>
+                <li><a href="components.html">Computer Parts</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Computer Parts Reference</h2>
+        <p>
+            Use this reference to identify common computer parts. Each entry
+            includes a picture, name, description, function, and basic
+            specifications to look for when comparing hardware.
+        </p>
+
+        <div class="component-search" role="search" aria-label="Search computer parts">
+            <label for="componentSearch">Search for a computer part</label>
+
+            <div class="component-search-controls">
+                <input
+                    type="search"
+                    id="componentSearch"
+                    placeholder="Try CPU, RAM, keyboard, or storage"
+                    autocomplete="off"
+                >
+                <button type="button" id="clearComponentSearch">Clear</button>
+            </div>
+
+            <p id="componentSearchSummary" aria-live="polite">
+                Showing all 13 computer parts.
+            </p>
+        </div>
+
+        <nav aria-label="Computer parts categories">
+            <h3>Browse by category</h3>
+            <ul>
+                <li><a href="#internal-components">Internal Components</a></li>
+                <li><a href="#input-devices">Input Devices</a></li>
+                <li><a href="#output-devices">Output Devices</a></li>
+                <li><a href="#storage-devices">Storage Devices</a></li>
+            </ul>
+        </nav>
+
+        <section id="internal-components">
+            <h2>Internal Components</h2>
+
+            <article>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/2023_P%C5%82yta_g%C5%82%C3%B3wna_ASRock_A320M-DVS.jpg" alt="A computer motherboard" width="300">
+                    <figcaption>Computer motherboard</figcaption>
+                </figure>
+                <h3>Motherboard</h3>
+                <p><strong>Description:</strong> The large circuit board that connects the computer's major components.</p>
+                <p><strong>Function:</strong> Allows the CPU, RAM, storage, expansion cards, and peripherals to communicate.</p>
+                <p><strong>Basic specifications:</strong> ATX, Micro-ATX, or Mini-ITX form factor; CPU socket; RAM slots; expansion slots; USB and display ports.</p>
+            </article>
+
+            <article>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Prozessorkuehler_komponenten_IMGP5332_wp.jpg" alt="A central processing unit" width="300">
+                    <figcaption>Central processing unit</figcaption>
+                </figure>
+                <h3>Central Processing Unit (CPU)</h3>
+                <p><strong>Description:</strong> A small processor installed in a socket on the motherboard.</p>
+                <p><strong>Function:</strong> Reads and executes instructions, performs calculations, and manages computer operations.</p>
+                <p><strong>Basic specifications:</strong> Core count, thread count, clock speed, cache size, socket, and thermal design power.</p>
+            </article>
+
+            <article>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/16_GiB-DDR4-RAM-Riegel_RAM019FIX_Small_Crop_90_PCNT.png" alt="A RAM memory module" width="300">
+                    <figcaption>RAM memory module</figcaption>
+                </figure>
+                <h3>Random Access Memory (RAM)</h3>
+                <p><strong>Description:</strong> Temporary memory modules installed in the motherboard's memory slots.</p>
+                <p><strong>Function:</strong> Holds data and programs that are actively being used by the CPU.</p>
+                <p><strong>Basic specifications:</strong> Capacity in GB, DDR generation, speed in MHz, latency, and number of modules.</p>
+            </article>
+
+            <article>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Personal_computer%2C_exploded_4.svg" alt="A computer power supply unit" width="300">
+                    <figcaption>Power supply unit</figcaption>
+                </figure>
+                <h3>Power Supply Unit (PSU)</h3>
+                <p><strong>Description:</strong> The component that receives power from an outlet and supplies it to the computer.</p>
+                <p><strong>Function:</strong> Converts AC electricity into regulated DC electricity for the internal components.</p>
+                <p><strong>Basic specifications:</strong> Wattage, 80 PLUS efficiency rating, modular or non-modular cables, connectors, and form factor.</p>
+            </article>
+        </section>
+
+        <section id="input-devices">
+            <h2>Input Devices</h2>
+
+            <article>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Camera_zoom_burst_on_a_Microsoft_computer_keyboard_in_Tuntorp_8.jpg" alt="A computer keyboard" width="300">
+                    <figcaption>Computer keyboard</figcaption>
+                </figure>
+                <h3>Keyboard</h3>
+                <p><strong>Description:</strong> A board with keys used to enter text, numbers, symbols, and commands.</p>
+                <p><strong>Function:</strong> Sends typed characters and key commands to the computer.</p>
+                <p><strong>Basic specifications:</strong> Layout, key count, connection type, switch type, and presence of a numeric keypad.</p>
+            </article>
+
+            <article>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Mouse_mechanism_diagram.svg" alt="A computer mouse" width="300">
+                    <figcaption>Computer mouse</figcaption>
+                </figure>
+                <h3>Mouse</h3>
+                <p><strong>Description:</strong> A hand-held pointing device with buttons and a movement sensor.</p>
+                <p><strong>Function:</strong> Controls the pointer and lets the user click, select, drag, and scroll.</p>
+                <p><strong>Basic specifications:</strong> DPI range, sensor type, number of buttons, polling rate, and wired or wireless connection.</p>
+            </article>
+
+            <article>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Shure_Wireless_Microphone_SM58.jpg" alt="A computer microphone" width="300">
+                    <figcaption>Computer microphone</figcaption>
+                </figure>
+                <h3>Microphone</h3>
+                <p><strong>Description:</strong> An audio input device that captures a person's voice or other sounds.</p>
+                <p><strong>Function:</strong> Changes sound waves into an audio signal for recording, calls, or broadcasts.</p>
+                <p><strong>Basic specifications:</strong> Connection type, pickup pattern, frequency response, sensitivity, and sample rate.</p>
+            </article>
+        </section>
+
+        <section id="output-devices">
+            <h2>Output Devices</h2>
+
+            <article>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Personal_computer%2C_exploded_4.svg" alt="An LCD computer monitor" width="300">
+                    <figcaption>LCD computer monitor</figcaption>
+                </figure>
+                <h3>Monitor</h3>
+                <p><strong>Description:</strong> An electronic display that shows the computer's visual output.</p>
+                <p><strong>Function:</strong> Presents text, images, video, and software interfaces to the user.</p>
+                <p><strong>Basic specifications:</strong> Screen size, resolution, refresh rate, panel type, brightness, and video ports.</p>
+            </article>
+
+            <article>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Bose_Computer_MusicMonitor.jpg" alt="Computer speakers" width="300">
+                    <figcaption>Computer speakers</figcaption>
+                </figure>
+                <h3>Speakers</h3>
+                <p><strong>Description:</strong> Audio output devices that use a driver to produce sound.</p>
+                <p><strong>Function:</strong> Play music, voices, alerts, and other sounds from the computer.</p>
+                <p><strong>Basic specifications:</strong> Number of channels, power output, frequency response, connection type, and volume controls.</p>
+            </article>
+
+            <article>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PC_Printer.svg" alt="A computer printer" width="300">
+                    <figcaption>Computer printer</figcaption>
+                </figure>
+                <h3>Printer</h3>
+                <p><strong>Description:</strong> A device that puts digital documents or images onto paper.</p>
+                <p><strong>Function:</strong> Produces physical copies of computer output.</p>
+                <p><strong>Basic specifications:</strong> Inkjet or laser technology, print speed, print resolution, paper sizes, and color support.</p>
+            </article>
+        </section>
+
+        <section id="storage-devices">
+            <h2>Storage Devices</h2>
+
+            <article>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Seagate_ST33232A_hard_disk_inner_view.jpg" alt="A hard disk drive" width="300">
+                    <figcaption>Hard disk drive</figcaption>
+                </figure>
+                <h3>Hard Disk Drive (HDD)</h3>
+                <p><strong>Description:</strong> A storage device that uses spinning magnetic platters and a moving read/write head.</p>
+                <p><strong>Function:</strong> Stores the operating system, applications, and files for long-term use.</p>
+                <p><strong>Basic specifications:</strong> Capacity, rotation speed in RPM, cache, SATA interface, and 2.5-inch or 3.5-inch form factor.</p>
+            </article>
+
+            <article>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/2017_Dysk_SSD_Plextor_M8Pe%28Y%29_256GB.jpg" alt="A solid-state drive" width="300">
+                    <figcaption>Solid-state drive</figcaption>
+                </figure>
+                <h3>Solid-State Drive (SSD)</h3>
+                <p><strong>Description:</strong> A storage device that uses flash memory instead of spinning disks.</p>
+                <p><strong>Function:</strong> Saves files and programs and provides faster access than many traditional hard drives.</p>
+                <p><strong>Basic specifications:</strong> Capacity, sequential read and write speed, SATA or NVMe interface, form factor, and endurance.</p>
+            </article>
+
+            <article>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/2023_Pendrive%27y_Verbatim_Store_%E2%80%98n%E2%80%99_Click_16_GB_%281%29.jpg" alt="A USB flash drive" width="300">
+                    <figcaption>USB flash drive</figcaption>
+                </figure>
+                <h3>USB Flash Drive</h3>
+                <p><strong>Description:</strong> A small portable device that stores data using flash memory.</p>
+                <p><strong>Function:</strong> Transfers, stores, and backs up files between compatible devices.</p>
+                <p><strong>Basic specifications:</strong> Capacity, USB-A or USB-C connector, USB version, read speed, and write speed.</p>
+            </article>
+        </section>
+
+        <p><a href="lessons.html">Read the hardware lessons</a></p>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 EduXplore. For educational purposes.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

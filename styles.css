@@ -1,0 +1,614 @@
+/* EduXplore Website Styles */
+
+:root {
+    --navy: #12324a;
+    --blue: #1f6f8b;
+    --blue-dark: #15536a;
+    --sky: #e8f4f7;
+    --page: #f6f9fb;
+    --surface: #ffffff;
+    --text: #20313d;
+    --muted: #5b6d78;
+    --line: #d7e4e9;
+    --shadow: 0 10px 26px rgba(18, 50, 74, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background-color: var(--page);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Header and navigation */
+
+header {
+    padding: 36px 24px 28px;
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    color: white;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: 0.02em;
+}
+
+header p {
+    max-width: 620px;
+    margin: 8px auto 24px;
+    color: #d8eef2;
+}
+
+header nav ul,
+main > nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+header nav a {
+    display: inline-block;
+    padding: 6px 0;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    color: #bde8ee;
+    text-decoration: underline;
+}
+
+/* Main layout */
+
+main {
+    width: min(1120px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 42px 0 24px;
+}
+
+main > h2 {
+    margin: 0 0 8px;
+    color: var(--navy);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+main > p {
+    max-width: 850px;
+    margin: 0 0 28px;
+    color: var(--muted);
+}
+
+main a {
+    color: var(--blue-dark);
+    font-weight: bold;
+}
+
+main a:hover {
+    color: var(--navy);
+}
+
+main > nav {
+    margin: 0 0 36px;
+    padding: 20px 24px;
+    border: 1px solid #c7e0e5;
+    border-radius: 12px;
+    background-color: var(--sky);
+}
+
+main > nav h3 {
+    margin: 0 0 12px;
+    color: var(--navy);
+    font-size: 1.05rem;
+}
+
+main > nav a {
+    display: block;
+    padding: 8px 14px;
+    border: 1px solid #b8d5dc;
+    border-radius: 999px;
+    background-color: white;
+    text-decoration: none;
+}
+
+main > nav a:hover {
+    border-color: var(--blue);
+    background-color: var(--blue);
+    color: white;
+}
+
+section {
+    margin: 0 0 36px;
+    padding: 30px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background-color: var(--surface);
+    box-shadow: var(--shadow);
+    scroll-margin-top: 20px;
+}
+
+section > h2 {
+    margin: 0 0 8px;
+    color: var(--navy);
+    font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+section > p {
+    margin-top: 0;
+    color: var(--muted);
+}
+
+main ul,
+main ol {
+    padding-left: 24px;
+}
+
+main li {
+    margin-bottom: 8px;
+}
+
+/* Home and lesson article cards */
+
+main > section:has(> article):not(:has(figure)) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+main > section:has(> article):not(:has(figure)) > h2,
+main > section:has(> article):not(:has(figure)) > p {
+    grid-column: 1 / -1;
+}
+
+main > section:has(> article):not(:has(figure)) > article {
+    height: 100%;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--blue);
+    border-radius: 10px;
+    background-color: #fbfdfe;
+}
+
+main > section:has(> article):not(:has(figure)) > article h3 {
+    margin: 0 0 8px;
+    color: var(--blue-dark);
+    font-size: 1.15rem;
+}
+
+main > section:has(> article):not(:has(figure)) > article p {
+    color: var(--muted);
+}
+
+/* Computer parts cards */
+
+body:has(figure) main > section:not(:last-child) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+body:has(figure) main > section > h2 {
+    grid-column: 1 / -1;
+}
+
+body:has(figure) main > section > article {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 6px 18px rgba(18, 50, 74, 0.06);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+body:has(figure) main > section > article:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(18, 50, 74, 0.13);
+}
+
+body:has(figure) main figure {
+    margin: 0;
+    background-color: #edf6f8;
+}
+
+body:has(figure) main figure img {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+body:has(figure) main figcaption {
+    padding: 8px 16px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+body:has(figure) main article > h3,
+body:has(figure) main article > p {
+    margin-right: 18px;
+    margin-left: 18px;
+}
+
+body:has(figure) main article > h3 {
+    margin-top: 18px;
+    margin-bottom: 8px;
+    color: var(--blue-dark);
+    font-size: 1.15rem;
+}
+
+body:has(figure) main article > p {
+    margin-top: 0;
+    color: var(--muted);
+    font-size: 0.93rem;
+}
+
+/* Buttons */
+
+.start-button,
+button,
+.lesson-button,
+.watch-btn,
+.read-btn,
+.lesson-quiz-btn,
+.history-quiz-btn {
+    display: inline-block;
+    padding: 9px 14px;
+    border: none;
+    border-radius: 6px;
+    font: inherit;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.start-button,
+button,
+.watch-btn,
+.lesson-quiz-btn,
+.history-quiz-btn {
+    background-color: var(--blue);
+    color: white;
+}
+
+.start-button:hover,
+button:hover,
+.watch-btn:hover,
+.lesson-quiz-btn:hover,
+.history-quiz-btn:hover {
+    background-color: var(--blue-dark);
+    color: white;
+}
+
+.read-btn {
+    border: 1px solid #b8d5dc;
+    background-color: white;
+    color: var(--blue-dark);
+}
+
+.read-btn:hover {
+    background-color: var(--sky);
+    color: var(--navy);
+}
+
+.lesson-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+/* Topic quiz indicators */
+
+.topic-status,
+.topic-score,
+.topic-retakes {
+    margin: 5px 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: bold;
+}
+
+.topic-status {
+    margin-top: 12px;
+}
+
+/* Quiz page old result */
+
+#quizResult {
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: var(--sky);
+    color: var(--navy);
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Quiz history page */
+
+.quiz-history-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.quiz-history-card {
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--blue);
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 6px 18px rgba(18, 50, 74, 0.06);
+}
+
+.quiz-history-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--navy);
+}
+
+.quiz-history-card p {
+    margin: 6px 0;
+    color: var(--muted);
+    font-weight: bold;
+}
+
+.history-quiz-btn {
+    margin-top: 12px;
+}
+
+/* Video modal */
+
+.video-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.video-box {
+    width: 90%;
+    max-width: 800px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.video-box iframe {
+    width: 100%;
+    height: 420px;
+    border: none;
+    border-radius: 8px;
+}
+
+.close-video {
+    float: right;
+    margin-bottom: 10px;
+    background-color: var(--navy);
+}
+
+/* Lesson quiz modal */
+
+.quiz-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    padding: 20px;
+    background-color: rgba(18, 50, 74, 0.75);
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.quiz-box {
+    width: 90%;
+    max-width: 650px;
+    padding: 22px;
+    border-radius: 12px;
+    background-color: white;
+}
+
+.quiz-box h2 {
+    margin-top: 0;
+    color: var(--navy);
+}
+
+#lessonQuizChoices label {
+    display: block;
+    margin: 8px 0;
+    padding: 9px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#lessonQuizChoices label:hover {
+    background-color: var(--sky);
+}
+
+.close-quiz {
+    float: right;
+    background-color: #6c757d;
+}
+
+.close-quiz:hover {
+    background-color: #495057;
+}
+
+#lessonQuizMessage {
+    margin-top: 14px;
+    font-weight: bold;
+    color: var(--navy);
+}
+
+/* About page table */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: white;
+}
+
+caption {
+    margin-bottom: 10px;
+    color: var(--muted);
+    font-weight: bold;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: var(--navy);
+    color: white;
+}
+
+tr:nth-child(even) td {
+    background-color: #f8fbfc;
+}
+
+/* Footer */
+
+footer {
+    margin-top: 28px;
+    padding: 20px 24px;
+    background-color: var(--navy);
+    color: #d8eef2;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsive design */
+
+@media (max-width: 820px) {
+    main {
+        width: min(100% - 28px, 680px);
+        padding-top: 30px;
+    }
+
+    main > section:has(> article):not(:has(figure)),
+    body:has(figure) main > section:not(:last-child),
+    .quiz-history-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    header {
+        padding: 28px 16px 22px;
+    }
+
+    header p {
+        margin-bottom: 18px;
+        font-size: 0.94rem;
+    }
+
+    header nav ul,
+    main > nav ul {
+        gap: 6px 14px;
+    }
+
+    header nav a {
+        font-size: 0.92rem;
+    }
+
+    main {
+        width: min(100% - 24px, 460px);
+        padding-top: 24px;
+    }
+
+    main > nav {
+        padding: 16px;
+    }
+
+    main > nav ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    main > nav a {
+        padding: 7px 9px;
+        text-align: center;
+        font-size: 0.88rem;
+    }
+
+    section {
+        padding: 20px 16px;
+        border-radius: 12px;
+    }
+
+    main > section:has(> article):not(:has(figure)),
+    body:has(figure) main > section:not(:last-child),
+    .quiz-history-grid {
+        display: block;
+    }
+
+    main > section:has(> article):not(:has(figure)) > article,
+    body:has(figure) main > section > article,
+    .quiz-history-card {
+        margin-top: 14px;
+    }
+
+    body:has(figure) main figure img {
+        height: 180px;
+    }
+
+    .lesson-buttons {
+        display: block;
+    }
+
+    .lesson-buttons a,
+    .lesson-buttons button,
+    .history-quiz-btn,
+    .start-button {
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .video-box iframe {
+        height: 240px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}

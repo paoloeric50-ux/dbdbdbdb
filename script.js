@@ -839,37 +839,63 @@ if (nextLessonQuestion) {
   });
 }
 
-function finishLessonQuiz() {
-  const quiz = lessonQuizzes[currentQuiz];
-  const status = lessonScore >= quiz.passingScore ? "Passed" : "Failed";
+async function finishLessonQuiz() {
+  const completedTopic = currentQuiz;
+  const completedScore = lessonScore;
 
-  let retakes = localStorage.getItem(currentQuiz + "Retakes");
-
-  if (retakes === null) {
-    retakes = 0;
-  }
-
-  retakes = Number(retakes) + 1;
-
-  localStorage.setItem(currentQuiz + "Status", status);
-  localStorage.setItem(currentQuiz + "Score", lessonScore + "/5");
-  localStorage.setItem(currentQuiz + "Retakes", retakes);
-
-  updateLessonStatus(currentQuiz);
-
-  lessonQuizMessage.textContent =
-    "Quiz finished. Status: " + status + " | Score: " + lessonScore + "/5";
+  lessonQuizMessage.textContent = "Saving your quiz result...";
   lessonQuizQuestion.textContent = "You have completed this topic quiz.";
   lessonQuizChoices.innerHTML = "";
 
   submitLessonQuiz.style.display = "none";
   nextLessonQuestion.style.display = "none";
+
+  try {
+    const result = await saveQuizResult(completedTopic, completedScore);
+    updateLessonStatus(completedTopic, result);
+    lessonQuizMessage.textContent =
+      "Quiz finished and saved. Status: " +
+      result.status +
+      " | Score: " +
+      result.score +
+      "/" +
+      result.total;
+  } catch (error) {
+    lessonQuizMessage.textContent =
+      "Quiz finished, but the result could not be saved. Please check your connection and try again later.";
+  }
 }
 
-function updateLessonStatus(quizName) {
-  const statusText = localStorage.getItem(quizName + "Status") || "Not Taken";
-  const scoreText = localStorage.getItem(quizName + "Score") || "0/5";
-  const retakesText = localStorage.getItem(quizName + "Retakes") || "0";
+async function saveQuizResult(topic, score) {
+  const response = await fetch("/api/quiz-results", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ topic, score }),
+  });
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error || "Could not save the quiz result.");
+  }
+
+  return data.result;
+}
+
+async function getQuizResults() {
+  const response = await fetch("/api/quiz-results");
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error || "Could not load quiz results.");
+  }
+
+  return data.results;
+}
+
+function updateLessonStatus(quizName, result) {
+  const statusText = result ? result.status : "Not Taken";
+  const scoreText = result ? result.score + "/" + result.total : "0/5";
+  const retakesText = result ? result.retakes : "0";
 
   const statusElement = document.getElementById(quizName + "Status");
   const scoreElement = document.getElementById(quizName + "Score");
@@ -900,20 +926,6 @@ if (quizModal) {
       quizModal.style.display = "none";
     }
   });
-
-  updateLessonStatus("motherboard");
-  updateLessonStatus("cpu");
-  updateLessonStatus("ram");
-  updateLessonStatus("psu");
-  updateLessonStatus("keyboard");
-  updateLessonStatus("mouse");
-  updateLessonStatus("microphone");
-  updateLessonStatus("monitor");
-  updateLessonStatus("speakers");
-  updateLessonStatus("printer");
-  updateLessonStatus("hdd");
-  updateLessonStatus("ssd");
-  updateLessonStatus("usb");
 }
 // JavaScript for quiz history page
 
@@ -961,37 +973,72 @@ function capitalizeTopicName(topicName) {
   return topicName.charAt(0).toUpperCase() + topicName.slice(1);
 }
 
-function loadQuizHistory() {
-  quizHistoryTopics.forEach(function (topic) {
-    const displayName = capitalizeTopicName(topic);
+async function loadQuizHistory() {
+  const message = document.getElementById("quizHistoryMessage");
 
-    const statusElement = document.getElementById(
-      "history" + displayName + "Status",
-    );
-    const scoreElement = document.getElementById(
-      "history" + displayName + "Score",
-    );
-    const retakesElement = document.getElementById(
-      "history" + displayName + "Retakes",
-    );
+  if (!message) {
+    return;
+  }
 
-    const savedStatus =
-      localStorage.getItem(topic + "Status") || "Not Taken Yet";
-    const savedScore = localStorage.getItem(topic + "Score") || "0/5";
-    const savedRetakes = localStorage.getItem(topic + "Retakes") || "0";
+  try {
+    const quizResults = await getQuizResults();
 
-    if (statusElement) {
-      statusElement.textContent = "Status: " + savedStatus;
-    }
+    quizHistoryTopics.forEach(function (topic) {
+      const displayName = capitalizeTopicName(topic);
 
-    if (scoreElement) {
-      scoreElement.textContent = "Score: " + savedScore;
-    }
+      const statusElement = document.getElementById(
+        "history" + displayName + "Status",
+      );
+      const scoreElement = document.getElementById(
+        "history" + displayName + "Score",
+      );
+      const retakesElement = document.getElementById(
+        "history" + displayName + "Retakes",
+      );
 
-    if (retakesElement) {
-      retakesElement.textContent = "Retakes: " + savedRetakes;
-    }
-  });
+      const result = quizResults[topic];
+      const savedStatus = result ? result.status : "Not Taken Yet";
+      const savedScore = result ? result.score + "/" + result.total : "0/5";
+      const savedRetakes = result ? result.retakes : "0";
+
+      if (statusElement) {
+        statusElement.textContent = "Status: " + savedStatus;
+      }
+
+      if (scoreElement) {
+        scoreElement.textContent = "Score: " + savedScore;
+      }
+
+      if (retakesElement) {
+        retakesElement.textContent = "Retakes: " + savedRetakes;
+      }
+    });
+    message.textContent = "Quiz history loaded from the app server.";
+  } catch (error) {
+    message.textContent =
+      "Could not load quiz history from the server. Please refresh the page.";
+  }
+}
+
+async function loadLessonProgress() {
+  const message = document.getElementById("lessonProgressMessage");
+
+  if (!message) {
+    return;
+  }
+
+  try {
+    const quizResults = await getQuizResults();
+
+    quizHistoryTopics.forEach(function (topic) {
+      updateLessonStatus(topic, quizResults[topic]);
+    });
+    message.textContent = "Saved quiz progress loaded from the app server.";
+  } catch (error) {
+    message.textContent =
+      "Could not load saved quiz progress. Quiz results need the app server to be running.";
+  }
 }
 
 loadQuizHistory();
+loadLessonProgress();
